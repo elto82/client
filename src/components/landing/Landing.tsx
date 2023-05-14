@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardMedia, Grid, Container } from "@mui/material";
+import { Button, Card, CardActions, CardMedia, Grid, Container } from "@mui/material";
 import video from "../../assets/video.mp4";
 import { Link } from "react-router-dom";
 import logo from "../../image/logo.png";

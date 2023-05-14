@@ -5,8 +5,8 @@ import MobileStepper from "@mui/material/MobileStepper";
 import Button from "@mui/material/Button";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
+// import SwipeableViews from "react-swipeable-views";
+// import { autoPlay } from "react-swipeable-views-utils";
 import logo from "../../image/logo.png";
 import Mision from "../../image/Mision.jpeg";
 import Vision from "../../image/Vision.jpeg";
@@ -25,7 +25,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { Link } from "react-router-dom";
 
 export const About = () => {
-  const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+  // const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
   const images = [{ imgPath: Mision }, { imgPath: Vision }, { imgPath: Proposito }];
 
@@ -41,9 +41,9 @@ export const About = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleStepChange = (step: number) => {
-    setActiveStep(step);
-  };
+  // const handleStepChange = (step: number) => {
+  //   setActiveStep(step);
+  // };
 
   const teamMembers = [
     {
@@ -111,7 +111,7 @@ export const About = () => {
       <section style={{ height: "100vh" }}>
         <Box sx={{ display: "flex", justifyContent: "center", mt: 12, p: 1 }}>
           <Box sx={{ maxWidth: 1000, flexGrow: 2 }}>
-            <AutoPlaySwipeableViews
+            {/* <AutoPlaySwipeableViews
               interval={8000}
               axis={theme.direction === "rtl" ? "x-reverse" : "x"}
               index={activeStep}
@@ -135,7 +135,7 @@ export const About = () => {
                   ) : null}
                 </div>
               ))}
-            </AutoPlaySwipeableViews>
+            </AutoPlaySwipeableViews> */}
             <MobileStepper
               sx={{ bgcolor: "rgba(255,152,0,0.44)" }}
               steps={maxSteps}

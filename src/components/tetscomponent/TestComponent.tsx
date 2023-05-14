@@ -6,10 +6,10 @@ import { createUserRequest } from "../../reduxToolkit/authentication";
 
 //import rtk query
 import {
-  useCreatePropertyMutation,
-  useGetPropertiesQuery,
+  // useCreatePropertyMutation,
+  // useGetPropertiesQuery,
   useGetPropertyByIdQuery,
-  useGetPropertyByTypeQuery,
+  // useGetPropertyByTypeQuery,
   useDeletPropertyByIDMutation,
 } from "../../reduxToolkit/apiSlice";
 import { useCreateUserMutation } from "../../reduxToolkit/apiSlice";
@@ -38,7 +38,7 @@ export const TestComponent = () => {
 
   console.log(data, isLoading);
   //RTQ query
-  const [createProperty] = useCreatePropertyMutation();
+  // const [createProperty] = useCreatePropertyMutation();
   const [deleteProperty] = useDeletPropertyByIDMutation();
 
   const [crateUser] = useCreateUserMutation();
@@ -49,29 +49,29 @@ export const TestComponent = () => {
   const [user, setUser] = useState<string | null | undefined>(null);
   auth?.currentUser?.email ? setUser(auth?.currentUser?.email) : setUser(null); */
 
-  const handlerCreate = () => {
-    const newProperty = {
-      type: "Vivienda",
-      address: "Avenida siempre viva 742",
-      spaces: 3,
-      price: 100000,
-      pictures: [
-        "https://d1994bulhovht.cloudfront.net/856x440/listings/5103720d-fdd9-4447-a2a3-cd02815190bf/c483c5ec-71ca-406d-a95c-298e625ddc09.webp",
-      ],
-      floors: 1,
-      covered_area: 100,
-      bathroom: 2,
-      bedroom: 3,
-      furnished: true,
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-      situation: "Disponible",
-      total_area: 100,
-      antiquity: 10,
-      operation: "Venta",
-      owner: "Dalmasca",
-    };
-    createProperty(newProperty);
-  };
+  // const handlerCreate = () => {
+  //   const newProperty = {
+  //     type: "Vivienda",
+  //     address: "Avenida siempre viva 742",
+  //     spaces: 3,
+  //     price: 100000,
+  //     pictures: [
+  //       "https://d1994bulhovht.cloudfront.net/856x440/listings/5103720d-fdd9-4447-a2a3-cd02815190bf/c483c5ec-71ca-406d-a95c-298e625ddc09.webp",
+  //     ],
+  //     floors: 1,
+  //     covered_area: 100,
+  //     bathroom: 2,
+  //     bedroom: 3,
+  //     furnished: true,
+  //     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+  //     situation: "Disponible",
+  //     total_area: 100,
+  //     antiquity: 10,
+  //     operation: "Venta",
+  //     owner: "Dalmasca",
+  //   };
+  //   createProperty(newProperty);
+  // };
 
   const handleGoogleSignIn = async () => {
     try {

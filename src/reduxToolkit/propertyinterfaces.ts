@@ -16,6 +16,7 @@ export interface property {
   antiquity: number;
   operation: string;
   owner: string;
+  imageUrl: string; ////se agrega
 }
 
 export interface createPropertyRequest {

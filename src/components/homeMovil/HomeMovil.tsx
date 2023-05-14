@@ -5,18 +5,18 @@ import {
   CardContent,
   Typography,
   Skeleton,
-  Button,
+  // Button,
   Box,
-  ButtonGroup,
-  Menu,
-  MenuItem,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  useMediaQuery,
+  // ButtonGroup,
+  // Menu,
+  // MenuItem,
+  // Checkbox,
+  // FormControl,
+  // FormControlLabel,
+  // useMediaQuery,
 } from "@mui/material";
-import { Theme, useTheme } from "@mui/material/";
-import { useState, useRef } from "react";
+// import { Theme, useTheme } from "@mui/material/";
+// import { useState, useRef } from "react";
 import { useGetPropertysFilterQuery } from "../../reduxToolkit/apiSlice";
 
 type filterPorps = {
@@ -28,8 +28,8 @@ export const HomeMovil: React.FC<filterPorps> = ({ stringQuery }) => {
 
   isLoading && console.log(typeof isLoading, typeof data);
 
-  const theme: Theme = useTheme();
-  const isSmallScream: boolean = useMediaQuery(theme.breakpoints.down("sm"));
+  // const theme: Theme = useTheme();
+  // const isSmallScream: boolean = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Box>
@@ -40,7 +40,8 @@ export const HomeMovil: React.FC<filterPorps> = ({ stringQuery }) => {
               {isLoading ? (
                 <Skeleton sx={{ height: 200 }} animation="wave" variant="rectangular" />
               ) : (
-                <CardMedia sx={{ height: 200 }} image={img}></CardMedia>
+                <CardMedia sx={{ height: 200 }} image={img.imageUrl as string}></CardMedia>
+
               )}
               {isLoading ? (
                 <Box sx={{ backgroundColor: "primary.light" }}>

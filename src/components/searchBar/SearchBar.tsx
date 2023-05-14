@@ -120,12 +120,13 @@ export const SearchBar = () => {
         filterSelectedOptions
         value={value}
         noOptionsText="Elegir Localidad"
-        onChange={(event: any, newValue: PlaceType | null) => {
+        onChange={(_, newValue: PlaceType | null) => {
           setOptions(newValue ? [newValue, ...options] : options);
           setValue(newValue);
         }}
-        onInputChange={(event, newInputValue) => {
-          setInputValue(newInputValue);
+        onInputChange={(newInputValue) => {
+          const inputValue = newInputValue.toString();
+          setInputValue(inputValue);
         }}
         renderInput={(params) => (
           <TextField
