@@ -2,6 +2,7 @@ import { Button, Card, CardActions, CardMedia, Grid, Container } from "@mui/mate
 import video from "../../assets/video.mp4";
 import { Link } from "react-router-dom";
 import logo from "../../image/logo.png";
+//import { videoUrl } from "../../assets/imageTeam";
 
 export const Landing = () => {
   return (
