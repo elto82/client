@@ -5,10 +5,10 @@ import s from "../landing/Landing.module.css";
 
 export const Landing = () => {
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div style={{ display: "flex", justifyContent: "center", minHeight: "100vh" }}>
       <Container>
-        <Grid container>
-          <Grid item xs={8} sm={8} md={6} lg={4}>
+        <Grid container justifyContent="center">
+          <Grid item xs={12} md={8} lg={6}>
             <video
               id="video"
               autoPlay
@@ -16,18 +16,12 @@ export const Landing = () => {
               muted
               src={video}
               style={{
-                position: "fixed",
                 width: "100%",
-                left: "50%",
-                top: "50%",
-
                 objectFit: "cover",
-                transform: "translate(-50%, -50%)",
                 zIndex: "-1",
               }}
             ></video>
-            <br />
-            <Box display="flex" justifyContent="center" alignContent="center" sx={{ ml: 80 }}>
+            <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" mt={4}>
               <Link to="/home">
                 <strong>
                   <button className={s.bt}>INGRESAR</button>
