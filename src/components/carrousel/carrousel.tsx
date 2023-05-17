@@ -9,13 +9,6 @@ type ItemProps = {
 };
 
 export const Carrousel: React.FC<ImageProps> = ({ images, duration }) => {
-  console.log("imagenes", images);
-
-  if (!images || images.length === 0) {
-    // Si las imágenes no están disponibles, puedes mostrar un indicador de carga o un mensaje de "cargando"
-    return <div>Cargando imágenes...</div>;
-  }
-
   return (
     <Carousel indicators={false} sx={{ width: "100%" }} interval={duration * 1000}>
       {images.map((item: any, index: number) => (
