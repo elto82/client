@@ -24,6 +24,15 @@ export const apiSlice = createApi({
     getPropertyById: builder.query<property, string>({
       queryFn: async (id) => {
         const response = await fetch(`/property/${id}`);
+        if (!response.ok) {
+          throw new Error("Error en la solicitud");
+        }
+
+        const contentType = response.headers.get("Content-Type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error("La respuesta no es un JSON válido");
+        }
+
         const data = await response.json();
         console.log("Response:", data); // Agrega el registro de consola aquí
         return data;
