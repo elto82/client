@@ -22,7 +22,12 @@ export const apiSlice = createApi({
       },
     }),
     getPropertyById: builder.query<property, string>({
-      query: (id) => `/property/${id}`,
+      queryFn: async (id) => {
+        const response = await fetch(`/property/${id}`);
+        const data = await response.json();
+        console.log("Response:", data); // Agrega el registro de consola aquí
+        return data;
+      },
     }),
 
     getPropertyByType: builder.query<property[], string>({
