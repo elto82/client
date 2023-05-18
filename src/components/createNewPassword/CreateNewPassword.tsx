@@ -49,9 +49,12 @@ export const CreateNewPassword = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    console.log(newPassword);
     try {
       const actionCode = location.search.substring(1);
       await confirmPasswordReset(auth, actionCode, newPassword);
+      console.log(`segundo console log ${newPassword}`);
+
       Toast.fire({
         icon: "success",
         title: "Cambio de contraseña exitoso..!!",
