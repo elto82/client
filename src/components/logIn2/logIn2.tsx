@@ -63,6 +63,7 @@ export const LogIn2 = () => {
     event.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      navigate("/home");
       Toast.fire({
         icon: "success",
         title: "Inicio de Sesión Exitoso",
@@ -76,7 +77,6 @@ export const LogIn2 = () => {
         confirmButtonColor: "#3085d6",
       });
     }
-    navigate("/home");
   };
 
   const handleEmailFocus = () => {
