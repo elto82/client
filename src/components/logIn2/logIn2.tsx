@@ -61,6 +61,7 @@ export const LogIn2 = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/home");
