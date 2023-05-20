@@ -5,7 +5,7 @@ import { Broker, CreateBrokerRequest } from "./brokerInterfaces";
 import { createUserRequest } from "./authentication";
 import { User } from "./userInterface";
 
-const API_URL = "api-proptech.up.railway.app";
+const API_URL = "https://api-proptech.up.railway.app/";
 
 export const apiSlice = createApi({
   //metodos para enviar y recibr data de la ruta property
