@@ -165,7 +165,7 @@ export const Form = () => {
     await createForm(form);
 
     //generar luego del envio de la info a la api la orden de pago de mercadopago
-    const response = await axios.post(`https://api-proptech.up.railway.app/mercadopago`, form);
+    const response = await axios.post(import.meta.env.VITE_URL_MERCADOPAGO, form);
 
     const data = response.data;
     if (data.global) {
