@@ -168,24 +168,22 @@ export const Form = () => {
     const response = await axios.post(import.meta.env.VITE_URL_MERCADOPAGO, form);
 
     const data = response.data;
+    console.log(data.global);
     if (data.global) {
-      if (window.MercadoPago) {
-        const mp = new window.MercadoPago(import.meta.env.VITE_MERCADOPAGO_TOKEN_CLIENT, {
-          locale: "es-AR",
-        });
 
-        mp.checkout({
-          preference: {
-            id: data.global,
-          },
-          render: {
-            container: ".cho-container",
-            label: "Pagar",
-          },
-        });
-      } else {
-        console.error("MercadoPago no está disponible");
-      }
+      const mp = new window.MercadoPago(import.meta.env.VITE_MERCADOPAGO_TOKEN_CLIENT, {
+        locale: "es-AR",
+      });
+      mp.checkout({
+        preference: {
+          id: data.global,
+        },
+        render: {
+          container: ".cho-container",
+          label: "Pagar",
+        },
+      });
+
     }
   };
 
