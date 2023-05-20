@@ -171,7 +171,7 @@ export const Form = () => {
     console.log(data.global);
     if (data.global) {
 
-      const mp = new window.Mercadopago(import.meta.env.VITE_MERCADOPAGO_TOKEN_CLIENT, {
+      const mp = new window.MercadoPago(import.meta.env.VITE_MERCADOPAGO_TOKEN_CLIENT, {
         locale: "es-AR",
       });
       mp.checkout({
