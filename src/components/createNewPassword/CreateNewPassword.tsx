@@ -20,8 +20,7 @@ export const CreateNewPassword = () => {
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
   const [isConfirmFocused, setIsConfirmFocused] = useState(false);
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).+$/;
-
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&^#(){}[\]|\\:;"'<>,./~`$=_+])[A-Za-z\d@$!%*?&^#(){}[\]|\\:;"'<>,./~`$=_+]{8,}$/;
   const isSubmitDisabled = !isValidPassword || !isMachingPassword;
 
   const Toast = Swal.mixin({
