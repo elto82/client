@@ -33,7 +33,7 @@ export const CardComponent: React.FC<CardProps> = ({
   operation,
   price,
 }) => {
-  console.log(price);
+
 
   return (
     <Card>

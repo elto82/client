@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { property, createPropertyRequest } from "./propertyinterfaces";
-import { form, createFormRequest } from "./forminterfaces";
+import { createFormRequest } from "./forminterfaces";
+import { createSignalRequest } from "./signalInterface";
 import { Broker, CreateBrokerRequest } from "./brokerInterfaces";
 import { createUserRequest } from "./authentication";
 import { User } from "./userInterface";
 
 const API_URL = "https://api-proptech.up.railway.app/";
-
 export const apiSlice = createApi({
   //metodos para enviar y recibr data de la ruta property
   reducerPath: "apiSlice",
@@ -18,8 +18,6 @@ export const apiSlice = createApi({
 
     getPropertysFilter: builder.query<property[], string>({
       query: (query) => {
-        console.log(query);
-
         return `/property${query}`;
       },
     }),
@@ -29,8 +27,6 @@ export const apiSlice = createApi({
 
     getPropertyByType: builder.query<property[], string>({
       query: (type) => {
-        console.log(type);
-
         return `/property/${type}`;
       },
     }),
@@ -71,7 +67,16 @@ export const apiSlice = createApi({
       }),
     }),
     //metodos para enviar y recibr data de la ruta authentication
+
     createUser: builder.mutation<createUserRequest, createUserRequest>({
+      query: (createUserRequest) => ({
+        url: "/user",
+        method: "POST",
+        body: createUserRequest,
+      }),
+    }),
+
+    createUserGoogle: builder.mutation<createUserRequest, createUserRequest>({
       query: (createUserRequest) => ({
         url: "/user/google",
         method: "POST",
@@ -88,11 +93,19 @@ export const apiSlice = createApi({
 
     //metodos para enviar y recibr data de la ruta form
 
-    createForm: builder.mutation<form, createFormRequest>({
-      query: (form) => ({
+    createForm: builder.mutation<createFormRequest, createFormRequest>({
+      query: (createFormRequest) => ({
         url: "/form",
         method: "POST",
-        body: form,
+        body: createFormRequest,
+      }),
+    }),
+
+    createSignal: builder.mutation<createSignalRequest, createSignalRequest>({
+      query: (createSignalRequest) => ({
+        url: "/signal",
+        method: "POST",
+        body: createSignalRequest,
       }),
     }),
   }),
@@ -110,7 +123,8 @@ export const {
   useCreatePropertyMutation,
   useDeletPropertyByIDMutation,
   useCreateUserMutation,
+  useCreateUserGoogleMutation,
   useCreateFormMutation,
   useGetUserByNameQuery,
+  useCreateSignalMutation,
 } = apiSlice;
-////////////////////////////////////////////////////
