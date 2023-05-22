@@ -31,7 +31,7 @@ export const LogIn2 = () => {
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).+$/;
   const isSubmitDisabled = !isValidEmail || !isValidPassword;
 
   const [crateUser] = useCreateUserGoogleMutation();
