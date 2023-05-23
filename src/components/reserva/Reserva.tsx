@@ -46,7 +46,7 @@ export const Signal = () => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         //console.log(user.displayName)
-        setUser(user.displayName);
+        setUser(user.email);
       } else {
         setUser(null);
       }
@@ -117,8 +117,10 @@ export const Signal = () => {
   return (
     <>
       <NavBar />
+
       <br />
       <br />
+
       {!user ? (
         <Grid
           container
@@ -158,7 +160,9 @@ export const Signal = () => {
                 <Button style={{ backgroundColor: "rgba(136, 85, 44, 0.85)", color: "white" }}> Iniciar sesión</Button>
               </Link>
             </Box>
+
           </Grid>
+
         </Grid>
       ) : (
         <Container>
@@ -200,9 +204,12 @@ export const Signal = () => {
             />
           </Box>
           <Button onClick={handleClick} style={{ backgroundColor: "rgba(136, 85, 44, 0.85)", color: "white" }}> Hacer reserva!</Button>
+
           <br />
           <br />
+
           <div className="cho-container"></div>
+
         </Container>
       )}
     </>
