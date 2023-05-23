@@ -4,18 +4,18 @@ import icon2 from "../../image/5066622.png";
 import * as Yup from "yup";
 import { Box, Button, Paper, TextField } from "@mui/material";
 import { NavBar } from "../navbar/Navbar";
-//import logo from "../../image/logo.png";
+// import logo from "../../image/logo.png";
 import { StarRating } from "./StarRating";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useState, useEffect } from "react";
-//import { useCreateConsultMutation } from "../../reduxToolkit/apiSlice";
+import { useCreateConsultMutation } from "../../reduxToolkit/apiSlice";
 import Swal from "sweetalert2";
 import { auth } from "../../firebase/firebase";
 
 export const Review = () => {
-  //const [setValue] = useState("");
+  //const [value, setValue] = useState("");
   const [user, setUser] = useState<string | null | undefined>(null);
-  //const [createConsult,] = useCreateConsultMutation();
+  const [createConsult] = useCreateConsultMutation();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -28,6 +28,7 @@ export const Review = () => {
       unsubscribe;
     };
   }, []);
+
   // const handleChange = (event: any) => {
   //   setValue(event.target.value);
   // };
@@ -48,7 +49,7 @@ export const Review = () => {
     if (user) {
       try {
         if (user === values.email) {
-          // const response = await createConsult(values);
+          await createConsult(values);
           Toast.fire({
             icon: "success",
             title: "Su consulta fue registrado correctamente",
@@ -80,6 +81,7 @@ export const Review = () => {
       });
     }
   };
+
   const initialValues = {
     name: "",
     email: "",
