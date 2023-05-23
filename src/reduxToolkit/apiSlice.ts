@@ -5,6 +5,7 @@ import { createSignalRequest } from "./signalInterface";
 import { Broker, CreateBrokerRequest } from "./brokerInterfaces";
 import { createUserRequest } from "./authentication";
 import { User } from "./userInterface";
+import { createConsultRequest } from "./consultInterface";
 
 const API_URL = "https://api-proptech.up.railway.app/";
 export const apiSlice = createApi({
@@ -108,6 +109,16 @@ export const apiSlice = createApi({
         body: createSignalRequest,
       }),
     }),
+
+    createConsult: builder.mutation<createConsultRequest, createConsultRequest>(
+      {
+        query: (createConsultRequest) => ({
+          url: "/consult",
+          method: "POST",
+          body: createConsultRequest,
+        }),
+      }
+    ),
   }),
 });
 
@@ -127,4 +138,5 @@ export const {
   useCreateFormMutation,
   useGetUserByNameQuery,
   useCreateSignalMutation,
+  useCreateConsultMutation,
 } = apiSlice;
