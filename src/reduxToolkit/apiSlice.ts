@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { property, createPropertyRequest } from "./propertyinterfaces";
 import { createFormRequest } from "./forminterfaces";
-import { createSignalRequest } from "./signalInterface";
+import { createSignalRequest, modifySignal } from "./signalInterface";
 import { Broker, CreateBrokerRequest } from "./brokerInterfaces";
 import { createUserRequest } from "./authentication";
 import { User } from "./userInterface";
-import { createConsultRequest } from "./consultInterface";
+import { createConsultRequest, emailMessage } from "./consultInterface";
+import { form } from "./forminterfaces";
 
 const API_URL = "https://api-proptech.up.railway.app/";
 export const apiSlice = createApi({
@@ -39,6 +40,17 @@ export const apiSlice = createApi({
       }),
     }),
 
+    updateProperty: builder.mutation<
+      property,
+      { id: number; updatedProperty: property }
+    >({
+      query: ({ id, updatedProperty }) => ({
+        url: `/property/${id}`,
+        method: "PUT",
+        body: updatedProperty,
+      }),
+    }),
+
     deletPropertyByID: builder.mutation<property, number>({
       query: (id) => ({
         url: `/property/${id}`,
@@ -51,8 +63,8 @@ export const apiSlice = createApi({
     getBrokers: builder.query<Broker[], void>({
       query: () => "/broker",
     }),
-    getBrokerById: builder.query<Broker, number>({
-      query: (id) => `/broker/${id}`,
+    getBrokerByEmail: builder.query<Broker, number>({
+      query: (email) => `/broker/${email}`,
     }),
     createBroker: builder.mutation<Broker, CreateBrokerRequest>({
       query: (broker) => ({
@@ -86,12 +98,21 @@ export const apiSlice = createApi({
     }),
 
     //Encontrar usuario por nombre
+
     getUserByName: builder.query<User[] | undefined, string | null | undefined>(
       {
         query: (displayName) => `/user?name=${displayName}`,
       }
     ),
 
+    getUser: builder.query<User[], void>({
+      query: () => "/user",
+    }),
+
+    //Econtrar Usuario por email
+    getUserByEmail: builder.query<User, string | null | undefined>({
+      query: (email) => `/user?email=${email}`,
+    }),
     //metodos para enviar y recibr data de la ruta form
 
     createForm: builder.mutation<createFormRequest, createFormRequest>({
@@ -102,6 +123,12 @@ export const apiSlice = createApi({
       }),
     }),
 
+    getfrom: builder.query<form[], void>({
+      query: () => `/form`,
+    }),
+
+    //señas
+
     createSignal: builder.mutation<createSignalRequest, createSignalRequest>({
       query: (createSignalRequest) => ({
         url: "/signal",
@@ -109,6 +136,28 @@ export const apiSlice = createApi({
         body: createSignalRequest,
       }),
     }),
+    getSignal: builder.query<createSignalRequest[], void>({
+      query: () => `/signal`,
+    }),
+
+    getSignalByid: builder.query<createSignalRequest, string>({
+      query: (id) => `/signal/${id}`,
+    }),
+
+    putSignal: builder.mutation<modifySignal, modifySignal>({
+      query: ({ id, situation }) => ({
+        url: `/singal/${id}`,
+        method: "PUT",
+        body: { situation },
+      }),
+    }),
+    //consultas
+
+    getconsultas: builder.query<createConsultRequest, void>({
+      query: () => `/consult`,
+    }),
+
+    //correo del broker, correo de usuario, mensaje
 
     createConsult: builder.mutation<createConsultRequest, createConsultRequest>(
       {
@@ -119,12 +168,20 @@ export const apiSlice = createApi({
         }),
       }
     ),
+
+    sendEmail: builder.mutation<void, emailMessage>({
+      query: (emailForm) => ({
+        url: "/send-email",
+        method: "POST",
+        body: emailForm,
+      }),
+    }),
   }),
 });
 
 export const {
   useGetBrokersQuery,
-  useGetBrokerByIdQuery,
+  useGetBrokerByEmailQuery,
   useCreateBrokerMutation,
   useDeleteBrokerMutation,
   useGetPropertiesQuery,
@@ -132,11 +189,20 @@ export const {
   useGetPropertyByIdQuery,
   useGetPropertyByTypeQuery,
   useCreatePropertyMutation,
+  useUpdatePropertyMutation,
   useDeletPropertyByIDMutation,
+  useGetUserQuery,
+  useGetUserByEmailQuery,
   useCreateUserMutation,
   useCreateUserGoogleMutation,
-  useCreateFormMutation,
   useGetUserByNameQuery,
+  useGetfromQuery,
+  useCreateFormMutation,
+  useGetSignalQuery,
   useCreateSignalMutation,
+  useGetSignalByidQuery,
+  usePutSignalMutation,
+  useGetconsultasQuery,
   useCreateConsultMutation,
+  useSendEmailMutation,
 } = apiSlice;

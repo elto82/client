@@ -6,3 +6,8 @@ export interface createSignalRequest {
   brokerId: number;
   userId: number | undefined;
 }
+
+export interface modifySignal {
+  id: number;
+  situation: string;
+}
