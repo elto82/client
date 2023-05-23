@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { Box, Typography, TextField, Button, Container, Grid } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 import {
   useGetPropertyByIdQuery,
   useGetUserByNameQuery,
