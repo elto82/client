@@ -30,7 +30,7 @@ export const Signal = () => {
   const [user, setUser] = useState<string | null | undefined>(null);
   const { id } = useParams<{ id: string }>() as { id: string };
   const { data } = useGetPropertyByIdQuery(id);
-  const { currentData } = useGetUserByNameQuery(user);
+  const { data: currentData } = useGetUserByNameQuery(user);
   const [createSignal] = useCreateSignalMutation();
 
   const formSignal: intFormSignal = {
@@ -53,7 +53,7 @@ export const Signal = () => {
     });
 
     return () => {
-      unsubscribe;
+      unsubscribe();
     };
   }, []);
 
