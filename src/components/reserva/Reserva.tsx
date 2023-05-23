@@ -46,7 +46,7 @@ export const Signal = () => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         //console.log(user.displayName)
-        setUser(user.email);
+        setUser(user.displayName);
       } else {
         setUser(null);
       }
