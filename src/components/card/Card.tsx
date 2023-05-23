@@ -2,12 +2,13 @@ import {
   Button,
   Card,
   CardActionArea,
-  CardActions,
+  //CardActions,
   CardContent,
   CardMedia,
   Typography,
+  Grid,
 } from "@mui/material";
-import Chip from "@mui/material/Chip";
+//import Chip from "@mui/material/Chip";
 import { Link } from "react-router-dom";
 
 type CardProps = {
@@ -30,11 +31,8 @@ export const CardComponent: React.FC<CardProps> = ({
   pictures,
   type,
   id,
-  operation,
   price,
 }) => {
-
-
   return (
     <Card>
       <CardActionArea>
@@ -49,22 +47,27 @@ export const CardComponent: React.FC<CardProps> = ({
           <Typography component="h6" variant="body2" mt={1}>
             {address}
           </Typography>
-          <Chip label={operation} color="primary" />
           <Typography component="h5" variant="body2" mt={1}>
             {description}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Link to={`/reserva/${id}`}>
-          <Button variant="contained" sx={{ margin: 1 }}>
-            Hacer Reserva
-          </Button>
-        </Link>
-        <Link to={`/property/${id}`}>
-          <Button variant="outlined">Mas Informacion</Button>
-        </Link>
-      </CardActions>
+      <Grid container justifyContent="space-around">
+        <Grid item xs={11} xl={5}>
+          <Link to={`/reserva/${id}`} style={{}}>
+            <Button variant="contained" sx={{ mb: 1, width: "100%" }}>
+              Hacer Reserva
+            </Button>
+          </Link>
+        </Grid>
+        <Grid item xs={11} xl={5}>
+          <Link to={`/property/${id}`} style={{}}>
+            <Button variant="outlined" sx={{ mb: 1, width: "100%" }}>
+              Mas Informacion
+            </Button>
+          </Link>
+        </Grid>
+      </Grid>
     </Card>
   );
 };
