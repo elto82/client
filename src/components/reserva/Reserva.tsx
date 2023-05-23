@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import { Box, Typography, TextField, Button, Container, Grid } from "@mui/material";
 import {
   useGetPropertyByIdQuery,
-  useGetUserByNameQuery,
+  useGetUserByEmailQuery,
   useCreateSignalMutation,
 } from "../../reduxToolkit/apiSlice";
 import { useParams, Link } from "react-router-dom";
@@ -33,25 +28,25 @@ interface intFormSignal {
 
 export const Signal = () => {
   const [user, setUser] = useState<string | null | undefined>(null);
+  console.log("user reserva", user)
   const { id } = useParams<{ id: string }>() as { id: string };
   const { data } = useGetPropertyByIdQuery(id);
-  const { currentData } = useGetUserByNameQuery(user);
+  const { currentData } = useGetUserByEmailQuery(user);
   const [createSignal] = useCreateSignalMutation();
-
+  console.log(currentData)
   const formSignal: intFormSignal = {
     operation: data?.operation,
     documentation: valueCloud,
     price: 5,
     propertyId: data?.id,
     brokerId: 712913,
-    userId: currentData?.[0]?.id,
+    userId: currentData?.id,
   };
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        //console.log(user.displayName)
-        setUser(user.displayName);
+        setUser(user.email);
       } else {
         setUser(null);
       }
@@ -122,10 +117,8 @@ export const Signal = () => {
   return (
     <>
       <NavBar />
-
       <br />
       <br />
-
       {!user ? (
         <Grid
           container
@@ -165,9 +158,7 @@ export const Signal = () => {
                 <Button style={{ backgroundColor: "rgba(136, 85, 44, 0.85)", color: "white" }}> Iniciar sesión</Button>
               </Link>
             </Box>
-
           </Grid>
-
         </Grid>
       ) : (
         <Container>
@@ -209,12 +200,9 @@ export const Signal = () => {
             />
           </Box>
           <Button onClick={handleClick} style={{ backgroundColor: "rgba(136, 85, 44, 0.85)", color: "white" }}> Hacer reserva!</Button>
-
           <br />
           <br />
-
           <div className="cho-container"></div>
-
         </Container>
       )}
     </>
