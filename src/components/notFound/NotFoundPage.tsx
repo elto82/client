@@ -10,7 +10,7 @@ const NotFoundPage: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>404 - Página no encontrada</h1>
       <p>Lo sentimos, la página que estás buscando no existe.</p>
       <button onClick={handleHomeClick}>Ir al inicio</button>
