@@ -12,6 +12,7 @@ import { CreateNewPassword } from "./components/createNewPassword/CreateNewPassw
 import { Signal } from "./components/reserva/Reserva";
 import { Review } from "./components/review/Review";
 import { UserProfile } from "./components/userProfile/UserProfile";
+import NotFoundPage from "./components/notFound/NotFoundPage";
 function App() {
   return (
     <div>
@@ -28,6 +29,7 @@ function App() {
         <Route path="/reserva/:id" element={<Signal />} />
         <Route path="/review" element={<Review />} />
         <Route path="/userProfile" element={<UserProfile />} />
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );
