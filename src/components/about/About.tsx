@@ -124,8 +124,8 @@ export const About = () => {
           </Grid>
         </Container>
         <Box textAlign={"center"} mb={12}>
-          <Button sx={{ mt: 5, mb: 10 }} variant="contained" component="a" href="/home">
-            Back Home
+          <Button sx={{ mt: 5, mb: 10, backgroundColor: 'transparent', }} variant="contained" component="a" href="/home">
+            ⬅️ Principal
           </Button>
         </Box>
       </section>
