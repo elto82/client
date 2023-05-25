@@ -60,7 +60,7 @@ export const Signal = () => {
     return () => {
       unsubscribe;
     };
-  }, [data?.pictures]);
+  }, []);
 
   const schema = Yup.object().shape({
     operation: Yup.string().required("dato prellenado, de tipo de operacion"),
