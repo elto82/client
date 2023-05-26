@@ -220,6 +220,11 @@ export const apiSlice = createApi({
         body: review,
       }),
     }),
+    getReview: builder.query<review[], void>({
+      query: () => "/review",
+      // @ts-ignore
+      invalidatesTags: ["Review"],
+    }),
   }),
 });
 
@@ -254,4 +259,5 @@ export const {
   useCreateFavoriteMutation,
   useDeletFavoriteByIDMutation,
   useCreateReviewMutation,
+  useGetReviewQuery,
 } = apiSlice;
