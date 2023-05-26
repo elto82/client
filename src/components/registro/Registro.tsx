@@ -23,8 +23,7 @@ import React from "react";
 import { auth } from "../../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { useCreateUserMutation, useGetUserByEmailQuery } from "../../reduxToolkit/apiSlice";
-
+import { useCreateUserMutation } from "../../reduxToolkit/apiSlice";
 
 const style = {
   position: "absolute",
@@ -85,28 +84,21 @@ export const Registro = () => {
       .required("*Campo Obligatorio"),
     termsAndConditions: Yup.string().oneOf(["true"], "Aceptar términos y condiciones"),
   });
-  const onSubmit = async (values: any) => {
-    try {
-      const findEmail = useGetUserByEmailQuery(values.email);
-      if (findEmail) {
-        console.log("Este email ya está registrado.");
-      }
-      createUserWithEmailAndPassword(auth, values.email, values.password);
-      let data: CreateUser = {
-        name: values.name,
-        email: values.email,
-      };
+  const onSubmit = (values: any) => {
+    createUserWithEmailAndPassword(auth, values.email, values.password);
+    let data: CreateUser = {
+      name: values.name,
+      email: values.email,
+    };
+    createUser(data)
+      .then(() => { })
+      .catch((error) => {
+        console.log(error);
+      });
 
-      await createUser(data);
-      navigate("/home");
-    } catch (error: any) {
-      setError(error.message);
-    }
+    navigate("/home");
   };
-
-  const [error, setError] = React.useState("");
   return (
-
     <Container sx={{ width: "auto" }}>
       <Container
         sx={{
@@ -151,11 +143,6 @@ export const Registro = () => {
                   />
                   <br />
                   <br />
-                  {error && (
-                    <Typography variant="body2" color="error">
-                      {error}
-                    </Typography>
-                  )}
                   <Field
                     as={TextField}
                     fullWidth
