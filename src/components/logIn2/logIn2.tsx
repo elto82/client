@@ -100,8 +100,8 @@ export const LogIn2 = () => {
         console.log(user);
 
         crateUser(newUser);
+        navigate("/home");
       }
-      /* navigate("/home"); */
       Toast.fire({
         icon: "success",
         title: "Inicio de Sesión con Google Exitoso",
