@@ -23,7 +23,7 @@ import React from "react";
 import { auth } from "../../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { useCreateUserMutation } from "../../reduxToolkit/apiSlice";
+import { useCreateUserMutation, useGetUserByEmailQuery } from "../../reduxToolkit/apiSlice";
 
 const style = {
   position: "absolute",
@@ -90,6 +90,9 @@ export const Registro = () => {
       name: values.name,
       email: values.email,
     };
+    const { currentData } = useGetUserByEmailQuery(data.email)
+    console.log(currentData)
+
     createUser(data)
       .then(() => { })
       .catch((error) => {
