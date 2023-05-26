@@ -86,10 +86,40 @@ export const LogIn2 = () => {
   const handlePasswordFocus = () => {
     setIsPasswordFocused(true);
   };
+  // const handleGoogleSignIn = async () => {
+  //   try {
+  //     const result = await signInWithPopup(auth, provider);
+  //     const user = result.user;
+  //     if (user !== null) {
+  //       const newUser: createUserRequest = {
+  //         name: user.displayName || "",
+  //         avatar: user.photoURL || "",
+  //         email: user.email || "",
+  //         hashgoogle: user.uid || "",
+  //       };
+  //       console.log(user);
+
+  //       crateUser(newUser);
+
+  //     }
+  //     Toast.fire({
+  //       icon: "success",
+  //       title: "Inicio de Sesión con Google Exitoso",
+  //     });
+  //   } catch (error: any) {
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Oops...",
+  //       text: "Algo salió mal al vincular cuenta Google..!!",
+  //       confirmButtonColor: "#3085d6",
+  //     });
+  //   }
+  // };
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
+
       if (user !== null) {
         const newUser: createUserRequest = {
           name: user.displayName || "",
@@ -97,15 +127,16 @@ export const LogIn2 = () => {
           email: user.email || "",
           hashgoogle: user.uid || "",
         };
-        console.log(user);
 
-        crateUser(newUser);
-        navigate("/home");
+        await crateUser(newUser);
       }
+
       Toast.fire({
         icon: "success",
         title: "Inicio de Sesión con Google Exitoso",
       });
+
+      navigate("/home"); // Navigate to the home page
     } catch (error: any) {
       Swal.fire({
         icon: "error",
