@@ -15,6 +15,7 @@ import { UserProfile } from "./components/userProfile/UserProfile";
 import { Success } from "./components/success/Success";
 import { Fail } from "./components/fail/Fail";
 import { NavBar } from "./components/navbar/Navbar";
+import NotFoundPage from "./components/notFound/NotFoundPage";
 
 function App() {
   const location = useLocation();
@@ -38,6 +39,7 @@ function App() {
         <Route path="/userProfile" element={<UserProfile />} />
         <Route path="/success" element={<Success />} />
         <Route path="/fail" element={<Fail />} />
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );
