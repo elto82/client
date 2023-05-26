@@ -76,7 +76,7 @@ export const Registro = () => {
       .min(8, "La longitud mínima de la contraseña debe ser 8")
       .required("*Campo Obligatorio")
       .matches(
-        /^(?=.\d)(?=.[\u0021-\u002b\u003c-\u0040])(?=.[A-Z])(?=.[a-z])\S{8,16}$/,
+        /^(?=.*\d)(?=.*[!-@])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/,
         "La contraseña debe contener al menos una letra mayúscula, un número y un carácter especial"
       ),
     confirmPassword: Yup.string()
