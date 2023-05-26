@@ -23,7 +23,7 @@ import React from "react";
 import { auth } from "../../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { useCreateUserMutation } from "../../reduxToolkit/apiSlice";
+import { useCreateUserMutation, useGetUserByEmailQuery } from "../../reduxToolkit/apiSlice";
 
 
 const style = {
@@ -85,19 +85,23 @@ export const Registro = () => {
       .required("*Campo Obligatorio"),
     termsAndConditions: Yup.string().oneOf(["true"], "Aceptar términos y condiciones"),
   });
-  const onSubmit = (values: any) => {
-    createUserWithEmailAndPassword(auth, values.email, values.password);
-    let data: CreateUser = {
-      name: values.name,
-      email: values.email,
-    };
-    createUser(data)
-      .then(() => {
-        navigate("/home");
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+  const onSubmit = async (values: any) => {
+    try {
+      const findEmail = await useGetUserByEmailQuery(values.email);
+      if (findEmail) {
+        throw new Error("Este email ya está registrado.");
+      }
+      createUserWithEmailAndPassword(auth, values.email, values.password);
+      let data: CreateUser = {
+        name: values.name,
+        email: values.email,
+      };
+
+      await createUser(data);
+      navigate("/home");
+    } catch (error: any) {
+      setError(error.message);
+    }
   };
 
   const [error, setError] = React.useState("");
