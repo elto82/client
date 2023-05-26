@@ -15,6 +15,7 @@ import { UserProfile } from "./components/userProfile/UserProfile";
 import { Success } from "./components/success/Success";
 import { Fail } from "./components/fail/Fail";
 import { NavBar } from "./components/navbar/Navbar";
+import { Favorite } from "./components/favorite/Favorite";
 import NotFoundPage from "./components/notFound/NotFoundPage";
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Route path="/userProfile" element={<UserProfile />} />
         <Route path="/success" element={<Success />} />
         <Route path="/fail" element={<Fail />} />
+        <Route path="/favorites" element={<Favorite />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </div>

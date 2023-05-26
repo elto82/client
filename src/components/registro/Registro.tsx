@@ -24,6 +24,8 @@ import { auth } from "../../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useCreateUserMutation } from "../../reduxToolkit/apiSlice";
+import Swal from "sweetalert2";
+//import { Try } from "@mui/icons-material";
 
 const style = {
   position: "absolute",
@@ -57,6 +59,18 @@ export const Registro = () => {
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
 
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
+
   const initialValues = {
     name: "",
     email: "",
@@ -76,7 +90,7 @@ export const Registro = () => {
       .min(8, "La longitud mínima de la contraseña debe ser 8")
       .required("*Campo Obligatorio")
       .matches(
-        /^(?=.*\d)(?=.*[!-@])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/,
+        /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/,
         "La contraseña debe contener al menos una letra mayúscula, un número y un carácter especial"
       ),
     confirmPassword: Yup.string()
@@ -84,20 +98,47 @@ export const Registro = () => {
       .required("*Campo Obligatorio"),
     termsAndConditions: Yup.string().oneOf(["true"], "Aceptar términos y condiciones"),
   });
-  const onSubmit = (values: any) => {
-    createUserWithEmailAndPassword(auth, values.email, values.password);
-    let data: CreateUser = {
-      name: values.name,
-      email: values.email,
-    };
-    createUser(data)
-      .then(() => { })
-      .catch((error) => {
-        console.log(error);
-      });
+  const onSubmit = async (values: any) => {
+    try {
+      const data: CreateUser = {
+        name: values.name,
+        email: values.email.toLowerCase(),
+      };
 
-    navigate("/home");
+      const response: any = await createUser(data);
+
+      if ("error" in response) {
+        // Error en la llamada a la API
+        console.log(response.error.data.error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: response.error.data.error,
+          confirmButtonColor: "#3085d6",
+        });
+      } else {
+        // Llamada a la API exitosa
+        createUserWithEmailAndPassword(auth, values.email, values.password);
+        Toast.fire({
+          icon: "success",
+          title: "Registro e inicio de Sesión Exitoso",
+        });
+        navigate("/home");
+
+        // Resto del código para manejar la respuesta exitosa
+        // ...
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Algo salió mal al registrar el usuario..!!",
+        confirmButtonColor: "#3085d6",
+      });
+    }
   };
+
   return (
     <Container sx={{ width: "auto" }}>
       <Container

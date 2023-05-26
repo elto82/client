@@ -31,7 +31,7 @@ export const teamMembers = [
   },
   {
     name: "Samuel Bocanegra",
-    role: "Back End Developer",
+    role: "Full Stack Developer",
     image: samuel,
     path: "https://github.com/kaylreese",
     path2: "https://www.linkedin.com/in/samuel-bocanegra-delgado-17a52a238/",
@@ -66,4 +66,5 @@ export const teamMembers = [
   },
 ];
 
-export const videoUrl = "https://drive.google.com/uc?id=1J7l2MspwPTo6crVQvpiPgyx_LKkNRCLd";
+export const videoUrl =
+  "https://drive.google.com/uc?id=1J7l2MspwPTo6crVQvpiPgyx_LKkNRCLd";

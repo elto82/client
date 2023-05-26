@@ -76,9 +76,7 @@ export const NavBar = () => {
     try {
       await signOut(auth);
       navigate("/home");
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) { }
   };
 
   const handleMenuCloseOutside = () => {
@@ -153,6 +151,13 @@ export const NavBar = () => {
         <Link to="/review" style={{ textDecoration: "none" }}>
           <Typography variant="h6" sx={{ color: theme.palette.primary.main }}>
             Testimonio
+          </Typography>
+        </Link>
+      </Grid>
+      <Grid item xs={2} sx={{ display: "flex", justifyContent: "center" }}>
+        <Link to="/favorites" style={{ textDecoration: "none" }}>
+          <Typography variant="h6" sx={{ color: theme.palette.primary.main }}>
+            Favoritos
           </Typography>
         </Link>
       </Grid>

@@ -8,6 +8,7 @@ import { User, UserByEmail } from "./userInterface";
 import { createConsultRequest, emailMessage } from "./consultInterface";
 import { form } from "./forminterfaces";
 import { favorite, createFavoriteRequest } from "./favoritesInterface";
+import { review } from "./review";
 
 const API_URL = "https://api-proptech.up.railway.app/";
 export const apiSlice = createApi({
@@ -181,6 +182,8 @@ export const apiSlice = createApi({
     // FAVORITES
     getFavorites: builder.query<favorite[], void>({
       query: () => "/favorites",
+      // @ts-ignore
+      providesTags: ["Favorites"],
     }),
 
     getFavoriteById: builder.query<favorite, string>({
@@ -196,6 +199,8 @@ export const apiSlice = createApi({
         method: "POST",
         body: createFavoriteRequest,
       }),
+      // @ts-ignore
+      invalidatesTags: ["Favorites"],
     }),
 
     deletFavoriteByID: builder.mutation<favorite, number>({
@@ -203,6 +208,16 @@ export const apiSlice = createApi({
         url: `/favorites/${id}`,
         method: "delete",
         body: id,
+      }),
+      // @ts-ignore
+      invalidatesTags: ["Favorites"],
+    }),
+
+    createReview: builder.mutation<review, review>({
+      query: (review) => ({
+        url: "/review",
+        method: "POST",
+        body: review,
       }),
     }),
   }),
@@ -238,4 +253,5 @@ export const {
   useGetFavoriteByIdQuery,
   useCreateFavoriteMutation,
   useDeletFavoriteByIDMutation,
+  useCreateReviewMutation,
 } = apiSlice;
