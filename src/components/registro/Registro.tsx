@@ -87,9 +87,9 @@ export const Registro = () => {
   });
   const onSubmit = async (values: any) => {
     try {
-      const findEmail = await useGetUserByEmailQuery(values.email);
+      const findEmail = useGetUserByEmailQuery(values.email);
       if (findEmail) {
-        throw new Error("Este email ya está registrado.");
+        console.log("Este email ya está registrado.");
       }
       createUserWithEmailAndPassword(auth, values.email, values.password);
       let data: CreateUser = {
