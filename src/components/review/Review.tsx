@@ -3,8 +3,8 @@ import icon from "../../image/5066618.png";
 import icon2 from "../../image/5066622.png";
 import * as Yup from "yup";
 import { Box, Button, Paper, TextField } from "@mui/material";
-import { NavBar } from "../navbar/Navbar";
-// import logo from "../../image/logo.png";
+
+//import logo from "../../image/logo.png";
 import { StarRating } from "./StarRating";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useState, useEffect } from "react";
@@ -20,7 +20,7 @@ export const Review = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        setUser(user.email)
+        setUser(user.email);
       }
     });
 
@@ -49,6 +49,7 @@ export const Review = () => {
     if (user) {
       try {
         if (user === values.email) {
+          // const response = 
           await createConsult(values);
           Toast.fire({
             icon: "success",
@@ -104,7 +105,6 @@ export const Review = () => {
 
   return (
     <Box>
-      <NavBar />
       <br />
       <br />
 
@@ -365,7 +365,9 @@ export const Review = () => {
                 />
               </Box>
               <Box>
-                <Button type="submit" variant="contained">Enviar Consulta</Button>
+                <Button type="submit" variant="contained">
+                  Enviar Consulta
+                </Button>
               </Box>
             </Form>
           </Formik>

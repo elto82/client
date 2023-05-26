@@ -12,7 +12,7 @@ import axios from "axios";
 import { orange } from "@mui/material/colors";
 import { valueCloud } from "./config.ts";
 import Swal from "sweetalert2";
-import { NavBar } from "../navbar/Navbar";
+
 import mano from "../../image/mano.png";
 import * as Yup from "yup";
 import { Carrousel } from "../carrousel/carrousel";
@@ -121,7 +121,7 @@ export const Signal = () => {
 
   return (
     <>
-      <NavBar />
+
       <br />
       <br />
       {!user ? (

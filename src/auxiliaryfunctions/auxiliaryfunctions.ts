@@ -2,7 +2,7 @@ export function getRequestedFilters(
   array: Array<any>,
   key: string
 ): Array<string> {
-  const requestedKeyArray: Array<string> = [];
+  let requestedKeyArray: Array<string> = [];
 
   array.forEach((objeto) => {
     if (!requestedKeyArray.includes(objeto[key])) {
@@ -13,7 +13,7 @@ export function getRequestedFilters(
   if (!isNaN(Number(requestedKeyArray[0]))) {
     requestedKeyArray.sort((a, b) => Number(a) - Number(b));
   }
-
+  requestedKeyArray = ["Todas", ...requestedKeyArray];
   return requestedKeyArray;
 }
 
