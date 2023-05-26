@@ -25,6 +25,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useCreateUserMutation } from "../../reduxToolkit/apiSlice";
 
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -90,31 +91,18 @@ export const Registro = () => {
       name: values.name,
       email: values.email,
     };
-
-
     createUser(data)
-      .then(() => { })
+      .then(() => {
+        navigate("/home");
+      })
       .catch((error) => {
-        if (error.code === "auth/email-already-in-use") {
-          alert("El correo ya se encuentra registrado");
-        } else if (error.code === "auth/invalid-email") {
-          alert("El correo ingresado no es valido");
-        } else if (error.code === "auth/operation-not-allowed") {
-          alert("El correo ingresado no es valido");
-        } else if (error.code === "auth/weak-password") {
-          alert("La contraseña debe contener al menos una letra mayáscula, un némero y un carácter especial");
-        } else if (error.code === "auth/user-not-found") {
-          alert("El correo ingresado no se encuentra registrado");
-        } else if (error.code === "auth/wrong-password") {
-          alert("La contraseña ingresada es incorrecta");
-        } else if (error.code === "auth/invalid-phone-number") {
-          console.log(error);
-        }
+        setError(error.message);
       });
-
-    navigate("/home");
   };
+
+  const [error, setError] = React.useState("");
   return (
+
     <Container sx={{ width: "auto" }}>
       <Container
         sx={{
@@ -159,6 +147,11 @@ export const Registro = () => {
                   />
                   <br />
                   <br />
+                  {error && (
+                    <Typography variant="body2" color="error">
+                      {error}
+                    </Typography>
+                  )}
                   <Field
                     as={TextField}
                     fullWidth
