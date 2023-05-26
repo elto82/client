@@ -90,8 +90,7 @@ export const Registro = () => {
       name: values.name,
       email: values.email,
     };
-    const { currentData } = useGetUserByEmailQuery(data.email)
-    console.log(currentData)
+
 
     createUser(data)
       .then(() => { })
