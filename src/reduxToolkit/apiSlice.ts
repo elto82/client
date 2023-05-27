@@ -223,7 +223,7 @@ export const apiSlice = createApi({
     getReview: builder.query<review[], void>({
       query: () => "/review",
       // @ts-ignore
-      invalidatesTags: ["Review"],
+      providesTags: ["Review"],
     }),
   }),
 });
