@@ -125,7 +125,7 @@ export const About = () => {
         </Container>
         <Box textAlign={"center"} mb={12}>
           <Button sx={{ mt: 5, mb: 10 }} variant="contained" component="a" href="/home">
-            Back Home
+            Regresar
           </Button>
         </Box>
       </section>
